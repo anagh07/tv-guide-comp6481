@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/**
+ * Contains information about a TV show.
+ *
+ * @author Anagh Mehran
+ */
 public class TVShow implements Watchable {
     private String showID;
     private String showName;
@@ -66,21 +71,21 @@ public class TVShow implements Watchable {
      * @param S the show which is to be compared to.
      * @return returns three different strings based on the time overlap between the shows.
      */
-    @Override
     public String isOnSameTime(TVShow S) {
         if (this.startTime == S.getStartTime() && this.endTime == S.getEndTime()) {
             return "Same time";
         } else if (this.startTime > S.getStartTime()) {
-            if (this.startTime > S.getEndTime()) return "Different time";
+            if (this.startTime >= S.getEndTime()) return "Different time";
             else return "Some Overlap";
         } else {
-            if (S.getStartTime() > this.endTime) return "Different time";
+            if (S.getStartTime() >= this.endTime) return "Different time";
             else return "Some Overlap";
         }
     }
 
     public String toString() {
-        return "Show-ID: " + this.showID + "\tName: " + this.showName + "\n\tStart-time: " + this.startTime + "\tEnd" +
+        return "Show-ID: " + this.showID + "\tName: " + this.showName + "\n\tStart-time: " + this.startTime +
+                "\tEnd" +
                 "-time: " + this.endTime;
     }
 

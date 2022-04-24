@@ -1,5 +1,10 @@
 import java.util.NoSuchElementException;
 
+/**
+ * Implements a linked list where every node is a ShowNode object.
+ *
+ * @author Anagh Mehran
+ */
 public class ShowList {
     private ShowNode head;
     private int size;
@@ -111,7 +116,7 @@ public class ShowList {
     public ShowNode find(String showID) {
         ShowNode currentNode = this.head;
         int iterations = 0;
-        while (currentNode != null && currentNode.getNextNode() != null) {
+        while (currentNode != null) {
             iterations++;
             if (currentNode.getTvShow().getShowID().equals(showID)) {
                 System.out.println(String.format("Found show after %d iterations.", iterations));
@@ -132,7 +137,7 @@ public class ShowList {
      */
     public ShowNode find(TVShow show) {
         ShowNode currentNode = this.head;
-        while (currentNode != null && currentNode.getNextNode() != null) {
+        while (currentNode != null) {
             if (currentNode.getTvShow().equals(show)) return currentNode;
             currentNode = currentNode.getNextNode();
         }
@@ -169,16 +174,28 @@ public class ShowList {
     public boolean equals(ShowList showList) {
         ShowNode currNode = this.head;
         if (this.getSize() != showList.getSize()) return false;
-        while (currNode.getNextNode() != null) {
+        while (currNode != null && currNode.getNextNode() != null) {
             if (!showList.contains(currNode.getTvShow())) return false;
             currNode = currNode.getNextNode();
         }
         return true;
     }
 
+    public String toString() {
+        ShowNode currNode = this.head;
+        String listText = "";
+        while (currNode != null) {
+            listText += currNode.getTvShow().toString() + "\n";
+            currNode = currNode.getNextNode();
+        }
+        return listText;
+    }
+
     /**
      * Class implements each node in the linked list.
      * Contains the TV show object for that node and a pointer to the next node in the linked list.
+     *
+     * @author Anagh Mehran
      */
     public class ShowNode {
         private TVShow tvShow;
